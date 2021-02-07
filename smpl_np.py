@@ -205,7 +205,15 @@ if __name__ == '__main__':
   smpl = SMPLModel('./model.pkl')
   np.random.seed(9608)
   pose = (np.random.rand(*smpl.pose_shape) - 0.5) * 0.4
-  beta = (np.random.rand(*smpl.beta_shape) - 0.5) * 0.06
+  #beta = (np.random.rand(*smpl.beta_shape) - 0.5) * 0.06
+  with open('/content/SMPL/beta.txt', 'r') as f:
+    data = f.read().split()
+    floats = []
+    for elem in data:
+      try:
+        floats.append(float(elem))
+      except ValueError:
+        pass
   trans = np.zeros(smpl.trans_shape)
   smpl.set_params(beta=beta, pose=pose, trans=trans)
   smpl.save_to_obj('./smpl_np.obj')
