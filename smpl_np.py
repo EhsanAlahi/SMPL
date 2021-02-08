@@ -214,6 +214,7 @@ if __name__ == '__main__':
         floats.append(float(elem))
       except ValueError:
         pass
+  beta = np.array(floats[:10])
   trans = np.zeros(smpl.trans_shape)
   smpl.set_params(beta=beta, pose=pose, trans=trans)
   smpl.save_to_obj('./smpl_np.obj')
